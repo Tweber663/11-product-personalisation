@@ -1,6 +1,7 @@
 import styles from './Product.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
+import { useState } from 'react';
 
 const Product = props => {
 
@@ -15,6 +16,8 @@ colors.forEach((e) => {
 })
 
 console.log(colorArr);
+
+const [selectedColor, setSelectedColor] = useState(colorArr[0]);
 
   return (
     <article className={styles.product }>
@@ -49,7 +52,7 @@ console.log(colorArr);
               <li><button type="button" className={clsx(styles.colorRed)} /></li>
               <li><button type="button" className={clsx(styles.colorWhite)} /></li> */}
               {colorArr.map((colorClass, index) => (
-                <li key={index}><button type="button" className={clsx(styles[colorClass], index === 0 && styles.active)} /></li>
+                <li  onClick={() => setSelectedColor(colorClass)}  key={index}><button type="button" className={clsx(styles[colorClass], selectedColor === colorClass && styles.active)} /></li>
               ))}
             </ul>
           </div>
