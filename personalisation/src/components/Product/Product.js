@@ -5,7 +5,9 @@ import { useState } from 'react';
 
 const Product = props => {
 
-const {title, colors} = props; 
+const {title, colors, sizes} = props; 
+
+console.log(sizes)
 
 let colorArr = []
 
@@ -15,9 +17,12 @@ colors.forEach((e) => {
  colorArr.push(`color${firstLetter}${remainingLetters}`)
 })
 
-console.log(colorArr);
+// console.log(colorArr);
 
 const [selectedColor, setSelectedColor] = useState(colorArr[0]);
+const [selectedSize, setSelectedSize] = useState('S')
+
+console.log(selectedSize)
 
   return (
     <article className={styles.product }>
@@ -38,19 +43,16 @@ const [selectedColor, setSelectedColor] = useState(colorArr[0]);
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={styles.active}>S</button></li>
-              <li><button type="button">M</button></li>
-              <li><button type="button">L</button></li>
-              <li><button type="button">XL</button></li>
+              {sizes.map((s, index) => (
+                 <li onClick={() => setSelectedSize(s)} key={index}><button type="button" className={clsx(selectedSize === s && styles.active)}>{s.name}</button></li>
+              ))}
             </ul>
           </div>
-
+          
+  
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              {/* <li><button type="button" className={clsx(styles.colorBlack, styles.active)} /></li>
-              <li><button type="button" className={clsx(styles.colorRed)} /></li>
-              <li><button type="button" className={clsx(styles.colorWhite)} /></li> */}
               {colorArr.map((colorClass, index) => (
                 <li  onClick={() => setSelectedColor(colorClass)}  key={index}><button type="button" className={clsx(styles[colorClass], selectedColor === colorClass && styles.active)} /></li>
               ))}
