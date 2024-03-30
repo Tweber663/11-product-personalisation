@@ -3,8 +3,21 @@ import clsx from 'clsx';
 import Button from '../Button/Button';
 
 const Product = props => {
+
+const {title, colors} = props; 
+
+let colorArr = []
+
+colors.forEach((e) => {
+ const firstLetter = e.split('')[0].toUpperCase(); 
+ const remainingLetters = e.split('').splice(1, e.length).join("");
+ colorArr.push(`color${firstLetter}${remainingLetters}`)
+})
+
+console.log(colorArr);
+
   return (
-    <article className={styles.product}>
+    <article className={styles.product }>
       <div className={styles.imageContainer}>
         <img 
           className={styles.image}
@@ -12,10 +25,12 @@ const Product = props => {
           src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--black.jpg`} />
       </div>
       <div>
+
         <header>
-          <h2 className={styles.name}>Kodilla shirt</h2>
+          <h2 className={styles.name}>{title}</h2>
           <span className={styles.price}>Price: 20$</span>
         </header>
+
         <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
@@ -26,14 +41,19 @@ const Product = props => {
               <li><button type="button">XL</button></li>
             </ul>
           </div>
+
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={clsx(styles.colorBlack, styles.active)} /></li>
+              {/* <li><button type="button" className={clsx(styles.colorBlack, styles.active)} /></li>
               <li><button type="button" className={clsx(styles.colorRed)} /></li>
-              <li><button type="button" className={clsx(styles.colorWhite)} /></li>
+              <li><button type="button" className={clsx(styles.colorWhite)} /></li> */}
+              {colorArr.map((colorClass, index) => (
+                <li key={index}><button type="button" className={clsx(styles[colorClass], index === 0 && styles.active)} /></li>
+              ))}
             </ul>
           </div>
+
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
           </Button>
