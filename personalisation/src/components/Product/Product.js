@@ -1,13 +1,11 @@
 import styles from './Product.module.scss';
-import clsx from 'clsx';
-import Button from '../Button/Button';
 import { useState } from 'react';
+import ProductImage from '../ProductImage/Product.image';
+import ProductForm from '../ProductForm/ProductForm';
 
 const Product = props => {
 
 const {title, colors, sizes} = props; 
-
-console.log(sizes)
 
 let colorArr = []
 
@@ -17,21 +15,13 @@ colors.forEach((e) => {
  colorArr.push(`color${firstLetter}${remainingLetters}`)
 })
 
-// console.log(colorArr);
 
 const [selectedColor, setSelectedColor] = useState(colorArr[0]);
-const [selectedSize, setSelectedSize] = useState('S')
-
-console.log(selectedSize)
+const [selectedSize, setSelectedSize] = useState(sizes[0])
 
   return (
     <article className={styles.product }>
-      <div className={styles.imageContainer}>
-        <img 
-          className={styles.image}
-          alt="Kodilla shirt"
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--black.jpg`} />
-      </div>
+          <ProductImage/>
       <div>
 
         <header>
@@ -39,7 +29,7 @@ console.log(selectedSize)
           <span className={styles.price}>Price: 20$</span>
         </header>
 
-        <form>
+        {/* <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
@@ -62,7 +52,8 @@ console.log(selectedSize)
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
           </Button>
-        </form>
+        </form> */}
+        <ProductForm props={props} colorArr={colorArr} selectedColor={selectedColor}  setSelectedColor={setSelectedColor} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
       </div>
     </article>
   )
