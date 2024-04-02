@@ -1,8 +1,6 @@
 import styles from './Product.module.scss'
 
 const ProductImage = () => {
-
-    console.log(styles)
     
     return(
         <div className={styles.imageContainer}>

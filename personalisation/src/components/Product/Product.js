@@ -15,7 +15,6 @@ colors.forEach((e) => {
  colorArr.push(`color${firstLetter}${remainingLetters}`)
 })
 
-
 const [selectedColor, setSelectedColor] = useState(colorArr[0]);
 const [selectedSize, setSelectedSize] = useState(sizes[0])
 
@@ -23,11 +22,11 @@ const [selectedSize, setSelectedSize] = useState(sizes[0])
     <article className={styles.product }>
           <ProductImage/>
       <div>
-
+{/* 
         <header>
           <h2 className={styles.name}>{title}</h2>
           <span className={styles.price}>Price: 20$</span>
-        </header>
+        </header> */}
 
         {/* <form>
           <div className={styles.sizes}>
@@ -53,7 +52,7 @@ const [selectedSize, setSelectedSize] = useState(sizes[0])
             <span className="fa fa-shopping-cart" />
           </Button>
         </form> */}
-        <ProductForm props={props} colorArr={colorArr} selectedColor={selectedColor}  setSelectedColor={setSelectedColor} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+        <ProductForm title={title} props={props} colorArr={colorArr} selectedColor={selectedColor}  setSelectedColor={setSelectedColor} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
       </div>
     </article>
   )

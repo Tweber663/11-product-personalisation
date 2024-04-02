@@ -4,14 +4,30 @@ import styles from './ProductForm.module.scss';
 import OptionSize from '../OptionSize.js/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 
-const ProductForm = ({colorArr, props, setSelectedColor, setSelectedSize, selectedColor, selectedSize}) => {
+const ProductForm = ({title, colorArr, props, setSelectedColor, setSelectedSize, selectedColor, selectedSize}) => {
 
 const {sizes} = props; 
+const newArr = [];
+
+
+
+const submitBasket = (e) => {
+    e.preventDefault()
+    console.log(newArr);
+}
+
+const payLoad_1 = (load) => {
+    newArr.push({ callback1: load });
+};
+
+const payLoad_2 = (load) => {
+    newArr.push({ callback2: load });
+};
 
 
 
     return(
-        <form>
+        <form onSubmit={submitBasket}>
         {/* <div className={styles.sizes}>
           <h3 className={styles.optionLabel}>Sizes</h3>
           <ul className={styles.choices}>
@@ -20,7 +36,7 @@ const {sizes} = props;
             ))}
           </ul>
         </div> */}
-        <OptionSize sizes={sizes} setSelectedColor={setSelectedColor} setSelectedSize={setSelectedSize} selectedColor={selectedColor} selectedSize={selectedSize}/>
+        <OptionSize payLoad_1={payLoad_1} title={title} sizes={sizes} setSelectedColor={setSelectedColor} setSelectedSize={setSelectedSize} selectedColor={selectedColor} selectedSize={selectedSize}/>
         
 
         {/* <div className={styles.colors}>
@@ -32,7 +48,7 @@ const {sizes} = props;
           </ul>
         </div> */}
 
-        <OptionColor colorArr={colorArr} setSelectedColor={setSelectedColor} selectedColor={selectedColor}/>
+        <OptionColor payLoad_2={payLoad_2}  colorArr={colorArr} setSelectedColor={setSelectedColor} selectedColor={selectedColor}/>
 
         <Button className={styles.button}>
           <span className="fa fa-shopping-cart" />
