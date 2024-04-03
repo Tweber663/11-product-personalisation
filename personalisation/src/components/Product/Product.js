@@ -16,43 +16,22 @@ colors.forEach((e) => {
 })
 
 const [selectedColor, setSelectedColor] = useState(colorArr[0]);
-const [selectedSize, setSelectedSize] = useState(sizes[0])
+const [selectedSize, setSelectedSize] = useState(sizes[0]);
+const [seleColrTshir, setSeleColrTshir] = useState('');
+const [selectedTshirt, setSelectedTshirt] = useState('');
+
+
+const changeColorTshirt = (e, b) => {
+  setSeleColrTshir(e);
+  setSelectedTshirt(b);
+}
 
   return (
     <article className={styles.product }>
-          <ProductImage/>
+          <ProductImage selectedTshirt={selectedTshirt} selectedColor={selectedColor} selectedColorTshirt={seleColrTshir}/>
       <div>
-{/* 
-        <header>
-          <h2 className={styles.name}>{title}</h2>
-          <span className={styles.price}>Price: 20$</span>
-        </header> */}
 
-        {/* <form>
-          <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>Sizes</h3>
-            <ul className={styles.choices}>
-              {sizes.map((s, index) => (
-                 <li onClick={() => setSelectedSize(s)} key={index}><button type="button" className={clsx(selectedSize === s && styles.active)}>{s.name}</button></li>
-              ))}
-            </ul>
-          </div>
-          
-  
-          <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>Colors</h3>
-            <ul className={styles.choices}>
-              {colorArr.map((colorClass, index) => (
-                <li  onClick={() => setSelectedColor(colorClass)}  key={index}><button type="button" className={clsx(styles[colorClass], selectedColor === colorClass && styles.active)} /></li>
-              ))}
-            </ul>
-          </div>
-
-          <Button className={styles.button}>
-            <span className="fa fa-shopping-cart" />
-          </Button>
-        </form> */}
-        <ProductForm title={title} props={props} colorArr={colorArr} selectedColor={selectedColor}  setSelectedColor={setSelectedColor} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+        <ProductForm changeColorTshirt={changeColorTshirt} title={title} props={props} colorArr={colorArr} selectedColor={selectedColor}  setSelectedColor={setSelectedColor} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
       </div>
     </article>
   )

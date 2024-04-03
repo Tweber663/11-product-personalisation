@@ -6,16 +6,16 @@ const OptionSize = ({payLoad_1, title, sizes, setSelectedColor, setSelectedSize,
 
 const [currentPrice, setCurrentPirce ] = useState(20);
 
-const getPrice = (s) => {
+const price = (s) => {
     if (typeof s !== 'undefined')
     setCurrentPirce(s.additionalPrice + 20); 
 }
 
 const infoPrep = (s) => {
     const load = {
-        title: title, 
-        price: 20 + s.additionalPrice,
-        size: s.name
+        Name: title, 
+        Price: 20 + s.additionalPrice,
+        Size: s.name
     }
     payLoad_1(load)
 }
@@ -26,7 +26,7 @@ const infoPrep = (s) => {
         <h3 className={styles.optionLabel}>Sizes</h3>
         <ul className={styles.choices}>
         {sizes.map((s, index) => (
-        <li onClick={() => { setSelectedSize(s); getPrice(s); infoPrep(s)}} 
+        <li onClick={() => { setSelectedSize(s); price(s); infoPrep(s)}} 
             key={index}>
             <button type="button" className={clsx(selectedSize === s && styles.active)}>
             {s.name}
